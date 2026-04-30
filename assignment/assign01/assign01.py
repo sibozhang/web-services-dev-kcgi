@@ -2,35 +2,10 @@ from flask import Flask
 from flask import request
 from datetime import datetime
 import uuid
-# import json
+import json
 
 app = Flask(__name__)
 
-mock_database = [{
-        "id": 1,
-        "name": "Leanne Graham",
-        "email": "Sincere@april.biz",
-        "address": {
-            "street": "Kulas Light",
-            "suite": "Apt. 556",
-            "city": "Gwenborough",
-            "zipcode": "92998-3874"
-        },
-        "phone": "1-770-736-8031 x56442"
-    },
-    {
-        "id": 2,
-        "name": "Ervin Howell",
-        "email": "Shanna@melissa.tv",
-        "address": {
-            "street": "Victor Plains",
-            "suite": "Suite 879",
-            "city": "Wisokyburgh",
-            "zipcode": "90566-7771"
-        },
-        "phone": "010-692-6593 x09125"
-    }
-]
 
 def response_field(status_code, data=None, message=None):
     default_messages = {
@@ -58,7 +33,13 @@ def response_field(status_code, data=None, message=None):
 
 @app.route("/info/<id>", methods=["GET"])
 def get_info(id):
-    target = [user for user in mock_database if str(user["id"]) == id]
+    try:
+        with open("data.json", "r") as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        return response_field(500), 500
+
+    target = [user for user in data if str(user["id"]) == id]
 
     if target:
         return response_field(200, data=target[0]), 200
@@ -69,14 +50,25 @@ def get_info(id):
 @app.route("/info", methods=["POST"])
 def create_id():
     receive_data = request.json
-    
+    try:
+        with open("data.json", "r") as f:
+            f_data = json.load(f)
+    except FileNotFoundError:
+        return response_field(500), 500
+
     if not receive_data.get("id"):
         return response_field(400, data={"error": "missing id"}), 400
     
-    if any(user["id"] == receive_data["id"] for user in mock_database):
+    if any(user["id"] == receive_data["id"] for user in f_data):
         return response_field(409, data={"conflict": "already exists"}), 409
 
-    mock_database.append(receive_data)
+    f_data.append(receive_data)
+    try:
+        with open("data.json", "w") as f:
+            json.dump(f_data, f, indent=4)
+    except Exception:
+        return response_field(500, message="Failed to save data"), 500
+
     return response_field(201, data=receive_data), 201
     
 app.run(port=2026)

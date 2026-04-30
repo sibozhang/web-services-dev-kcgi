@@ -6,6 +6,7 @@ dist/
 wheels/
 slide/
 .DS_Store
+*.zip
 *.docx
 *.egg-info
 
