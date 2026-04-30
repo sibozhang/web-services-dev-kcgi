@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import request
+from datetime import datetime
+import uuid
 # import json
 
 app = Flask(__name__)
@@ -30,27 +32,51 @@ mock_database = [{
     }
 ]
 
+def response_field(status_code, data=None, message=None):
+    default_messages = {
+        200: "Success",
+        201: "User created successfully",
+        400: "Bad Request: missing required fields",
+        404: "Resource not found",
+        409: "Conflict: resource already exists",
+        500: "Internal server error"
+    }
+
+    response_payload = {
+        "code" : status_code,
+        "message" : message if message else default_messages.get(status_code, "Unknown status"),
+        "data" : data if data else {},
+        "meta" : {
+            "timestamp": datetime.now().isoformat(),
+            "trace":uuid.uuid4().hex
+        }
+    }
+    
+    return response_payload
+
+
+
 @app.route("/info/<id>", methods=["GET"])
 def get_info(id):
     target = [user for user in mock_database if str(user["id"]) == id]
 
     if target:
-        return target[0]
+        return response_field(200, data=target[0]), 200
     else:
-        return {"error": "not found"}, 404
+        return response_field(404, data={"error": "not found"}), 404
 
 
 @app.route("/info", methods=["POST"])
 def create_id():
     receive_data = request.json
     
+    if not receive_data.get("id"):
+        return response_field(400, data={"error": "missing id"}), 400
+    
     if any(user["id"] == receive_data["id"] for user in mock_database):
-        return {"conflict": "already exists"}, 409
+        return response_field(409, data={"conflict": "already exists"}), 409
 
-    if receive_data.get("id"):
-        mock_database.append(receive_data)
-        return {"received": receive_data}, 201
-    else:
-        return {"error": "missing id"}, 400
-
+    mock_database.append(receive_data)
+    return response_field(201, data=receive_data), 201
+    
 app.run(port=2026)

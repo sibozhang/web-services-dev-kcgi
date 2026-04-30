@@ -5,6 +5,8 @@ build/
 dist/
 wheels/
 slide/
+.DS_Store
+*.docx
 *.egg-info
 
 # Virtual environments
