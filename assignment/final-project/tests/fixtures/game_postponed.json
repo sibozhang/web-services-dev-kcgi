@@ -1,0 +1,43 @@
+{
+  "dates": [
+    {
+      "date": "2025-04-06",
+      "games": [
+        {
+          "gamePk": 778431,
+          "gameDate": "2025-04-06T17:35:00Z",
+          "officialDate": "2025-08-09",
+          "season": "2025",
+          "gameType": "R",
+          "status": {
+            "abstractGameState": "Final",
+            "codedGameState": "D",
+            "detailedState": "Postponed",
+            "statusCode": "DR",
+            "startTimeTBD": false,
+            "reason": "Rain",
+            "abstractGameCode": "F"
+          },
+          "teams": {
+            "away": {
+              "team": {
+                "id": 146,
+                "name": "Miami Marlins"
+              }
+            },
+            "home": {
+              "team": {
+                "id": 144,
+                "name": "Atlanta Braves"
+              }
+            }
+          },
+          "venue": {
+            "id": 4705,
+            "name": "Truist Park"
+          }
+        }
+      ]
+    }
+  ]
+}

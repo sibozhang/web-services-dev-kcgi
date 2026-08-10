@@ -1,0 +1,1498 @@
+{
+  "records": [
+    {
+      "standingsType": "regularSeason",
+      "league": {
+        "id": 103,
+        "link": "/api/v1/league/103"
+      },
+      "division": {
+        "id": 201,
+        "name": "American League East",
+        "season": "2026",
+        "nameShort": "AL East",
+        "link": "/api/v1/divisions/201",
+        "abbreviation": "ALE",
+        "league": {
+          "id": 103,
+          "link": "/api/v1/league/103"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1"
+        },
+        "hasWildcard": false,
+        "sortOrder": 22,
+        "numPlayoffTeams": 1,
+        "active": true
+      },
+      "teamRecords": [
+        {
+          "team": {
+            "id": 139,
+            "name": "Tampa Bay Rays"
+          },
+          "leagueRecord": {
+            "wins": 56,
+            "losses": 42,
+            "ties": 0,
+            "pct": ".571"
+          },
+          "gamesBack": "-",
+          "divisionRank": "1",
+          "leagueRank": "1",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 35,
+                "losses": 15,
+                "type": "home",
+                "pct": ".700"
+              },
+              {
+                "wins": 21,
+                "losses": 27,
+                "type": "away",
+                "pct": ".438"
+              },
+              {
+                "wins": 4,
+                "losses": 6,
+                "type": "lastTen",
+                "pct": ".400"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L5",
+            "streakType": "losses",
+            "streakNumber": 5
+          },
+          "runsScored": 435,
+          "runsAllowed": 421
+        },
+        {
+          "team": {
+            "id": 147,
+            "name": "New York Yankees"
+          },
+          "leagueRecord": {
+            "wins": 54,
+            "losses": 44,
+            "ties": 0,
+            "pct": ".551"
+          },
+          "gamesBack": "2.0",
+          "divisionRank": "2",
+          "leagueRank": "2",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 23,
+                "losses": 22,
+                "type": "home",
+                "pct": ".511"
+              },
+              {
+                "wins": 31,
+                "losses": 22,
+                "type": "away",
+                "pct": ".585"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L2",
+            "streakType": "losses",
+            "streakNumber": 2
+          },
+          "runsScored": 465,
+          "runsAllowed": 381
+        },
+        {
+          "team": {
+            "id": 111,
+            "name": "Boston Red Sox"
+          },
+          "leagueRecord": {
+            "wins": 50,
+            "losses": 48,
+            "ties": 0,
+            "pct": ".510"
+          },
+          "gamesBack": "6.0",
+          "divisionRank": "3",
+          "leagueRank": "5",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 21,
+                "losses": 27,
+                "type": "home",
+                "pct": ".438"
+              },
+              {
+                "wins": 29,
+                "losses": 21,
+                "type": "away",
+                "pct": ".580"
+              },
+              {
+                "wins": 10,
+                "losses": 0,
+                "type": "lastTen",
+                "pct": "1.000"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W13",
+            "streakType": "wins",
+            "streakNumber": 13
+          },
+          "runsScored": 413,
+          "runsAllowed": 368
+        },
+        {
+          "team": {
+            "id": 110,
+            "name": "Baltimore Orioles"
+          },
+          "leagueRecord": {
+            "wins": 49,
+            "losses": 51,
+            "ties": 0,
+            "pct": ".490"
+          },
+          "gamesBack": "8.0",
+          "divisionRank": "4",
+          "leagueRank": "8",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 28,
+                "losses": 25,
+                "type": "home",
+                "pct": ".528"
+              },
+              {
+                "wins": 21,
+                "losses": 26,
+                "type": "away",
+                "pct": ".447"
+              },
+              {
+                "wins": 7,
+                "losses": 3,
+                "type": "lastTen",
+                "pct": ".700"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W7",
+            "streakType": "wins",
+            "streakNumber": 7
+          },
+          "runsScored": 459,
+          "runsAllowed": 472
+        },
+        {
+          "team": {
+            "id": 141,
+            "name": "Toronto Blue Jays"
+          },
+          "leagueRecord": {
+            "wins": 46,
+            "losses": 53,
+            "ties": 0,
+            "pct": ".465"
+          },
+          "gamesBack": "10.5",
+          "divisionRank": "5",
+          "leagueRank": "11",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 25,
+                "losses": 27,
+                "type": "home",
+                "pct": ".481"
+              },
+              {
+                "wins": 21,
+                "losses": 26,
+                "type": "away",
+                "pct": ".447"
+              },
+              {
+                "wins": 4,
+                "losses": 6,
+                "type": "lastTen",
+                "pct": ".400"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 397,
+          "runsAllowed": 442
+        }
+      ]
+    },
+    {
+      "standingsType": "regularSeason",
+      "league": {
+        "id": 103,
+        "link": "/api/v1/league/103"
+      },
+      "division": {
+        "id": 202,
+        "name": "American League Central",
+        "season": "2026",
+        "nameShort": "AL Central",
+        "link": "/api/v1/divisions/202",
+        "abbreviation": "ALC",
+        "league": {
+          "id": 103,
+          "link": "/api/v1/league/103"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1"
+        },
+        "hasWildcard": false,
+        "sortOrder": 23,
+        "numPlayoffTeams": 1,
+        "active": true
+      },
+      "teamRecords": [
+        {
+          "team": {
+            "id": 145,
+            "name": "Chicago White Sox"
+          },
+          "leagueRecord": {
+            "wins": 52,
+            "losses": 46,
+            "ties": 0,
+            "pct": ".531"
+          },
+          "gamesBack": "-",
+          "divisionRank": "1",
+          "leagueRank": "3",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 31,
+                "losses": 17,
+                "type": "home",
+                "pct": ".646"
+              },
+              {
+                "wins": 21,
+                "losses": 29,
+                "type": "away",
+                "pct": ".420"
+              },
+              {
+                "wins": 6,
+                "losses": 4,
+                "type": "lastTen",
+                "pct": ".600"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 469,
+          "runsAllowed": 424
+        },
+        {
+          "team": {
+            "id": 114,
+            "name": "Cleveland Guardians"
+          },
+          "leagueRecord": {
+            "wins": 52,
+            "losses": 48,
+            "ties": 0,
+            "pct": ".520"
+          },
+          "gamesBack": "1.0",
+          "divisionRank": "2",
+          "leagueRank": "4",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 25,
+                "losses": 24,
+                "type": "home",
+                "pct": ".510"
+              },
+              {
+                "wins": 27,
+                "losses": 24,
+                "type": "away",
+                "pct": ".529"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 392,
+          "runsAllowed": 404
+        },
+        {
+          "team": {
+            "id": 142,
+            "name": "Minnesota Twins"
+          },
+          "leagueRecord": {
+            "wins": 49,
+            "losses": 51,
+            "ties": 0,
+            "pct": ".490"
+          },
+          "gamesBack": "4.0",
+          "divisionRank": "3",
+          "leagueRank": "9",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 26,
+                "losses": 25,
+                "type": "home",
+                "pct": ".510"
+              },
+              {
+                "wins": 23,
+                "losses": 26,
+                "type": "away",
+                "pct": ".469"
+              },
+              {
+                "wins": 6,
+                "losses": 4,
+                "type": "lastTen",
+                "pct": ".600"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L2",
+            "streakType": "losses",
+            "streakNumber": 2
+          },
+          "runsScored": 479,
+          "runsAllowed": 503
+        },
+        {
+          "team": {
+            "id": 116,
+            "name": "Detroit Tigers"
+          },
+          "leagueRecord": {
+            "wins": 46,
+            "losses": 53,
+            "ties": 0,
+            "pct": ".465"
+          },
+          "gamesBack": "6.5",
+          "divisionRank": "4",
+          "leagueRank": "12",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 27,
+                "losses": 23,
+                "type": "home",
+                "pct": ".540"
+              },
+              {
+                "wins": 19,
+                "losses": 30,
+                "type": "away",
+                "pct": ".388"
+              },
+              {
+                "wins": 7,
+                "losses": 3,
+                "type": "lastTen",
+                "pct": ".700"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 418,
+          "runsAllowed": 387
+        },
+        {
+          "team": {
+            "id": 118,
+            "name": "Kansas City Royals"
+          },
+          "leagueRecord": {
+            "wins": 40,
+            "losses": 60,
+            "ties": 0,
+            "pct": ".400"
+          },
+          "gamesBack": "13.0",
+          "divisionRank": "5",
+          "leagueRank": "14",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 23,
+                "losses": 27,
+                "type": "home",
+                "pct": ".460"
+              },
+              {
+                "wins": 17,
+                "losses": 33,
+                "type": "away",
+                "pct": ".340"
+              },
+              {
+                "wins": 4,
+                "losses": 6,
+                "type": "lastTen",
+                "pct": ".400"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 426,
+          "runsAllowed": 525
+        }
+      ]
+    },
+    {
+      "standingsType": "regularSeason",
+      "league": {
+        "id": 103,
+        "link": "/api/v1/league/103"
+      },
+      "division": {
+        "id": 200,
+        "name": "American League West",
+        "season": "2026",
+        "nameShort": "AL West",
+        "link": "/api/v1/divisions/200",
+        "abbreviation": "ALW",
+        "league": {
+          "id": 103,
+          "link": "/api/v1/league/103"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1"
+        },
+        "hasWildcard": false,
+        "sortOrder": 24,
+        "numPlayoffTeams": 1,
+        "active": true
+      },
+      "teamRecords": [
+        {
+          "team": {
+            "id": 140,
+            "name": "Texas Rangers"
+          },
+          "leagueRecord": {
+            "wins": 50,
+            "losses": 49,
+            "ties": 0,
+            "pct": ".505"
+          },
+          "gamesBack": "-",
+          "divisionRank": "1",
+          "leagueRank": "6",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 24,
+                "losses": 22,
+                "type": "home",
+                "pct": ".522"
+              },
+              {
+                "wins": 26,
+                "losses": 27,
+                "type": "away",
+                "pct": ".491"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 412,
+          "runsAllowed": 443
+        },
+        {
+          "team": {
+            "id": 136,
+            "name": "Seattle Mariners"
+          },
+          "leagueRecord": {
+            "wins": 50,
+            "losses": 50,
+            "ties": 0,
+            "pct": ".500"
+          },
+          "gamesBack": "0.5",
+          "divisionRank": "2",
+          "leagueRank": "7",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 29,
+                "losses": 21,
+                "type": "home",
+                "pct": ".580"
+              },
+              {
+                "wins": 21,
+                "losses": 29,
+                "type": "away",
+                "pct": ".420"
+              },
+              {
+                "wins": 4,
+                "losses": 6,
+                "type": "lastTen",
+                "pct": ".400"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W2",
+            "streakType": "wins",
+            "streakNumber": 2
+          },
+          "runsScored": 402,
+          "runsAllowed": 389
+        },
+        {
+          "team": {
+            "id": 117,
+            "name": "Houston Astros"
+          },
+          "leagueRecord": {
+            "wins": 47,
+            "losses": 54,
+            "ties": 0,
+            "pct": ".465"
+          },
+          "gamesBack": "4.0",
+          "divisionRank": "3",
+          "leagueRank": "10",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 23,
+                "losses": 27,
+                "type": "home",
+                "pct": ".460"
+              },
+              {
+                "wins": 24,
+                "losses": 27,
+                "type": "away",
+                "pct": ".471"
+              },
+              {
+                "wins": 3,
+                "losses": 7,
+                "type": "lastTen",
+                "pct": ".300"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L4",
+            "streakType": "losses",
+            "streakNumber": 4
+          },
+          "runsScored": 455,
+          "runsAllowed": 508
+        },
+        {
+          "team": {
+            "id": 133,
+            "name": "Athletics"
+          },
+          "leagueRecord": {
+            "wins": 42,
+            "losses": 57,
+            "ties": 0,
+            "pct": ".424"
+          },
+          "gamesBack": "8.0",
+          "divisionRank": "4",
+          "leagueRank": "13",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 20,
+                "losses": 30,
+                "type": "home",
+                "pct": ".400"
+              },
+              {
+                "wins": 22,
+                "losses": 27,
+                "type": "away",
+                "pct": ".449"
+              },
+              {
+                "wins": 1,
+                "losses": 9,
+                "type": "lastTen",
+                "pct": ".100"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 443,
+          "runsAllowed": 557
+        },
+        {
+          "team": {
+            "id": 108,
+            "name": "Los Angeles Angels"
+          },
+          "leagueRecord": {
+            "wins": 39,
+            "losses": 61,
+            "ties": 0,
+            "pct": ".390"
+          },
+          "gamesBack": "11.5",
+          "divisionRank": "5",
+          "leagueRank": "15",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 22,
+                "losses": 27,
+                "type": "home",
+                "pct": ".449"
+              },
+              {
+                "wins": 17,
+                "losses": 34,
+                "type": "away",
+                "pct": ".333"
+              },
+              {
+                "wins": 3,
+                "losses": 7,
+                "type": "lastTen",
+                "pct": ".300"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 434,
+          "runsAllowed": 496
+        }
+      ]
+    },
+    {
+      "standingsType": "regularSeason",
+      "league": {
+        "id": 104,
+        "link": "/api/v1/league/104"
+      },
+      "division": {
+        "id": 204,
+        "name": "National League East",
+        "season": "2026",
+        "nameShort": "NL East",
+        "link": "/api/v1/divisions/204",
+        "abbreviation": "NLE",
+        "league": {
+          "id": 104,
+          "link": "/api/v1/league/104"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1"
+        },
+        "hasWildcard": false,
+        "sortOrder": 32,
+        "numPlayoffTeams": 1,
+        "active": true
+      },
+      "teamRecords": [
+        {
+          "team": {
+            "id": 144,
+            "name": "Atlanta Braves"
+          },
+          "leagueRecord": {
+            "wins": 57,
+            "losses": 41,
+            "ties": 0,
+            "pct": ".582"
+          },
+          "gamesBack": "-",
+          "divisionRank": "1",
+          "leagueRank": "3",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 29,
+                "losses": 19,
+                "type": "home",
+                "pct": ".604"
+              },
+              {
+                "wins": 28,
+                "losses": 22,
+                "type": "away",
+                "pct": ".560"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 489,
+          "runsAllowed": 381
+        },
+        {
+          "team": {
+            "id": 143,
+            "name": "Philadelphia Phillies"
+          },
+          "leagueRecord": {
+            "wins": 55,
+            "losses": 45,
+            "ties": 0,
+            "pct": ".550"
+          },
+          "gamesBack": "3.0",
+          "divisionRank": "2",
+          "leagueRank": "5",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 26,
+                "losses": 23,
+                "type": "home",
+                "pct": ".531"
+              },
+              {
+                "wins": 29,
+                "losses": 22,
+                "type": "away",
+                "pct": ".569"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 432,
+          "runsAllowed": 445
+        },
+        {
+          "team": {
+            "id": 146,
+            "name": "Miami Marlins"
+          },
+          "leagueRecord": {
+            "wins": 52,
+            "losses": 48,
+            "ties": 0,
+            "pct": ".520"
+          },
+          "gamesBack": "6.0",
+          "divisionRank": "3",
+          "leagueRank": "7",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 31,
+                "losses": 20,
+                "type": "home",
+                "pct": ".608"
+              },
+              {
+                "wins": 21,
+                "losses": 28,
+                "type": "away",
+                "pct": ".429"
+              },
+              {
+                "wins": 4,
+                "losses": 6,
+                "type": "lastTen",
+                "pct": ".400"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L6",
+            "streakType": "losses",
+            "streakNumber": 6
+          },
+          "runsScored": 447,
+          "runsAllowed": 428
+        },
+        {
+          "team": {
+            "id": 120,
+            "name": "Washington Nationals"
+          },
+          "leagueRecord": {
+            "wins": 50,
+            "losses": 50,
+            "ties": 0,
+            "pct": ".500"
+          },
+          "gamesBack": "8.0",
+          "divisionRank": "4",
+          "leagueRank": "10",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 20,
+                "losses": 31,
+                "type": "home",
+                "pct": ".392"
+              },
+              {
+                "wins": 30,
+                "losses": 19,
+                "type": "away",
+                "pct": ".612"
+              },
+              {
+                "wins": 4,
+                "losses": 6,
+                "type": "lastTen",
+                "pct": ".400"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 545,
+          "runsAllowed": 530
+        },
+        {
+          "team": {
+            "id": 121,
+            "name": "New York Mets"
+          },
+          "leagueRecord": {
+            "wins": 42,
+            "losses": 58,
+            "ties": 0,
+            "pct": ".420"
+          },
+          "gamesBack": "16.0",
+          "divisionRank": "5",
+          "leagueRank": "14",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 21,
+                "losses": 28,
+                "type": "home",
+                "pct": ".429"
+              },
+              {
+                "wins": 21,
+                "losses": 30,
+                "type": "away",
+                "pct": ".412"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 409,
+          "runsAllowed": 471
+        }
+      ]
+    },
+    {
+      "standingsType": "regularSeason",
+      "league": {
+        "id": 104,
+        "link": "/api/v1/league/104"
+      },
+      "division": {
+        "id": 205,
+        "name": "National League Central",
+        "season": "2026",
+        "nameShort": "NL Central",
+        "link": "/api/v1/divisions/205",
+        "abbreviation": "NLC",
+        "league": {
+          "id": 104,
+          "link": "/api/v1/league/104"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1"
+        },
+        "hasWildcard": false,
+        "sortOrder": 33,
+        "numPlayoffTeams": 1,
+        "active": true
+      },
+      "teamRecords": [
+        {
+          "team": {
+            "id": 158,
+            "name": "Milwaukee Brewers"
+          },
+          "leagueRecord": {
+            "wins": 62,
+            "losses": 37,
+            "ties": 0,
+            "pct": ".626"
+          },
+          "gamesBack": "-",
+          "divisionRank": "1",
+          "leagueRank": "2",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 32,
+                "losses": 18,
+                "type": "home",
+                "pct": ".640"
+              },
+              {
+                "wins": 30,
+                "losses": 19,
+                "type": "away",
+                "pct": ".612"
+              },
+              {
+                "wins": 6,
+                "losses": 4,
+                "type": "lastTen",
+                "pct": ".600"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W3",
+            "streakType": "wins",
+            "streakNumber": 3
+          },
+          "runsScored": 502,
+          "runsAllowed": 371
+        },
+        {
+          "team": {
+            "id": 112,
+            "name": "Chicago Cubs"
+          },
+          "leagueRecord": {
+            "wins": 56,
+            "losses": 43,
+            "ties": 0,
+            "pct": ".566"
+          },
+          "gamesBack": "6.0",
+          "divisionRank": "2",
+          "leagueRank": "4",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 29,
+                "losses": 20,
+                "type": "home",
+                "pct": ".592"
+              },
+              {
+                "wins": 27,
+                "losses": 23,
+                "type": "away",
+                "pct": ".540"
+              },
+              {
+                "wins": 7,
+                "losses": 3,
+                "type": "lastTen",
+                "pct": ".700"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W2",
+            "streakType": "wins",
+            "streakNumber": 2
+          },
+          "runsScored": 502,
+          "runsAllowed": 440
+        },
+        {
+          "team": {
+            "id": 138,
+            "name": "St. Louis Cardinals"
+          },
+          "leagueRecord": {
+            "wins": 51,
+            "losses": 47,
+            "ties": 0,
+            "pct": ".520"
+          },
+          "gamesBack": "10.5",
+          "divisionRank": "3",
+          "leagueRank": "6",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 26,
+                "losses": 26,
+                "type": "home",
+                "pct": ".500"
+              },
+              {
+                "wins": 25,
+                "losses": 21,
+                "type": "away",
+                "pct": ".543"
+              },
+              {
+                "wins": 4,
+                "losses": 6,
+                "type": "lastTen",
+                "pct": ".400"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L2",
+            "streakType": "losses",
+            "streakNumber": 2
+          },
+          "runsScored": 444,
+          "runsAllowed": 440
+        },
+        {
+          "team": {
+            "id": 134,
+            "name": "Pittsburgh Pirates"
+          },
+          "leagueRecord": {
+            "wins": 52,
+            "losses": 48,
+            "ties": 0,
+            "pct": ".520"
+          },
+          "gamesBack": "10.5",
+          "divisionRank": "4",
+          "leagueRank": "8",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 27,
+                "losses": 24,
+                "type": "home",
+                "pct": ".529"
+              },
+              {
+                "wins": 25,
+                "losses": 24,
+                "type": "away",
+                "pct": ".510"
+              },
+              {
+                "wins": 7,
+                "losses": 3,
+                "type": "lastTen",
+                "pct": ".700"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 533,
+          "runsAllowed": 479
+        },
+        {
+          "team": {
+            "id": 113,
+            "name": "Cincinnati Reds"
+          },
+          "leagueRecord": {
+            "wins": 45,
+            "losses": 53,
+            "ties": 0,
+            "pct": ".459"
+          },
+          "gamesBack": "16.5",
+          "divisionRank": "5",
+          "leagueRank": "12",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 22,
+                "losses": 28,
+                "type": "home",
+                "pct": ".440"
+              },
+              {
+                "wins": 23,
+                "losses": 25,
+                "type": "away",
+                "pct": ".479"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 414,
+          "runsAllowed": 473
+        }
+      ]
+    },
+    {
+      "standingsType": "regularSeason",
+      "league": {
+        "id": 104,
+        "link": "/api/v1/league/104"
+      },
+      "division": {
+        "id": 203,
+        "name": "National League West",
+        "season": "2026",
+        "nameShort": "NL West",
+        "link": "/api/v1/divisions/203",
+        "abbreviation": "NLW",
+        "league": {
+          "id": 104,
+          "link": "/api/v1/league/104"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1"
+        },
+        "hasWildcard": false,
+        "sortOrder": 34,
+        "numPlayoffTeams": 1,
+        "active": true
+      },
+      "teamRecords": [
+        {
+          "team": {
+            "id": 119,
+            "name": "Los Angeles Dodgers"
+          },
+          "leagueRecord": {
+            "wins": 63,
+            "losses": 36,
+            "ties": 0,
+            "pct": ".636"
+          },
+          "gamesBack": "-",
+          "divisionRank": "1",
+          "leagueRank": "1",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 31,
+                "losses": 19,
+                "type": "home",
+                "pct": ".620"
+              },
+              {
+                "wins": 32,
+                "losses": 17,
+                "type": "away",
+                "pct": ".653"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W2",
+            "streakType": "wins",
+            "streakNumber": 2
+          },
+          "runsScored": 516,
+          "runsAllowed": 360
+        },
+        {
+          "team": {
+            "id": 109,
+            "name": "Arizona Diamondbacks"
+          },
+          "leagueRecord": {
+            "wins": 51,
+            "losses": 48,
+            "ties": 0,
+            "pct": ".515"
+          },
+          "gamesBack": "12.0",
+          "divisionRank": "2",
+          "leagueRank": "9",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 29,
+                "losses": 21,
+                "type": "home",
+                "pct": ".580"
+              },
+              {
+                "wins": 22,
+                "losses": 27,
+                "type": "away",
+                "pct": ".449"
+              },
+              {
+                "wins": 7,
+                "losses": 3,
+                "type": "lastTen",
+                "pct": ".700"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W2",
+            "streakType": "wins",
+            "streakNumber": 2
+          },
+          "runsScored": 433,
+          "runsAllowed": 444
+        },
+        {
+          "team": {
+            "id": 135,
+            "name": "San Diego Padres"
+          },
+          "leagueRecord": {
+            "wins": 49,
+            "losses": 50,
+            "ties": 0,
+            "pct": ".495"
+          },
+          "gamesBack": "14.0",
+          "divisionRank": "3",
+          "leagueRank": "11",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 27,
+                "losses": 24,
+                "type": "home",
+                "pct": ".529"
+              },
+              {
+                "wins": 22,
+                "losses": 26,
+                "type": "away",
+                "pct": ".458"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "W1",
+            "streakType": "wins",
+            "streakNumber": 1
+          },
+          "runsScored": 405,
+          "runsAllowed": 437
+        },
+        {
+          "team": {
+            "id": 137,
+            "name": "San Francisco Giants"
+          },
+          "leagueRecord": {
+            "wins": 42,
+            "losses": 57,
+            "ties": 0,
+            "pct": ".424"
+          },
+          "gamesBack": "21.0",
+          "divisionRank": "4",
+          "leagueRank": "13",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 22,
+                "losses": 25,
+                "type": "home",
+                "pct": ".468"
+              },
+              {
+                "wins": 20,
+                "losses": 32,
+                "type": "away",
+                "pct": ".385"
+              },
+              {
+                "wins": 5,
+                "losses": 5,
+                "type": "lastTen",
+                "pct": ".500"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L2",
+            "streakType": "losses",
+            "streakNumber": 2
+          },
+          "runsScored": 408,
+          "runsAllowed": 469
+        },
+        {
+          "team": {
+            "id": 115,
+            "name": "Colorado Rockies"
+          },
+          "leagueRecord": {
+            "wins": 40,
+            "losses": 61,
+            "ties": 0,
+            "pct": ".396"
+          },
+          "gamesBack": "24.0",
+          "divisionRank": "5",
+          "leagueRank": "15",
+          "records": {
+            "splitRecords": [
+              {
+                "wins": 23,
+                "losses": 27,
+                "type": "home",
+                "pct": ".460"
+              },
+              {
+                "wins": 17,
+                "losses": 34,
+                "type": "away",
+                "pct": ".333"
+              },
+              {
+                "wins": 3,
+                "losses": 7,
+                "type": "lastTen",
+                "pct": ".300"
+              }
+            ]
+          },
+          "streak": {
+            "streakCode": "L1",
+            "streakType": "losses",
+            "streakNumber": 1
+          },
+          "runsScored": 484,
+          "runsAllowed": 574
+        }
+      ]
+    }
+  ]
+}

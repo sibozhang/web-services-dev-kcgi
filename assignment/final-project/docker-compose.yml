@@ -1,0 +1,80 @@
+services:
+  certs:
+    build: .
+    user: root
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        python /app/scripts/generate_dev_certificate.py
+        --cert /certs/mlb-dugout.crt
+        --key /certs/mlb-dugout.key
+        && chmod 644 /certs/mlb-dugout.crt /certs/mlb-dugout.key
+    volumes:
+      - dev_certs:/certs
+    restart: "no"
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: mlb
+      POSTGRES_USER: mlb
+      POSTGRES_PASSWORD: mlb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mlb -d mlb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://mlb:mlb@db:5432/mlb
+      TLS_MODE: direct
+      TLS_CERT_FILE: /certs/mlb-dugout.crt
+      TLS_KEY_FILE: /certs/mlb-dugout.key
+      CLIENT_URL: https://localhost:2027
+      BASE_URL: https://localhost:2028
+      CORS_ORIGINS: https://localhost:2027
+    ports:
+      - "2028:2027"
+    volumes:
+      - dev_certs:/certs:ro
+    depends_on:
+      certs:
+        condition: service_completed_successfully
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import ssl, urllib.request; urllib.request.urlopen('https://localhost:2027/api/health', context=ssl._create_unverified_context(), timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "2027:2027"
+    environment:
+      API_BASE_URL: https://localhost:2028
+      TLS_CERT_FILE: /certs/mlb-dugout.crt
+      TLS_KEY_FILE: /certs/mlb-dugout.key
+    volumes:
+      - dev_certs:/certs:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import ssl, urllib.request; urllib.request.urlopen('https://127.0.0.1:2027/healthz', context=ssl._create_unverified_context(), timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  dev_certs:

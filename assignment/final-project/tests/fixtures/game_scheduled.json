@@ -1,0 +1,48 @@
+{
+  "dates": [
+    {
+      "date": "2026-07-21",
+      "games": [
+        {
+          "gamePk": 824409,
+          "gameDate": "2026-07-21T22:40:00Z",
+          "officialDate": "2026-07-21",
+          "season": "2026",
+          "gameType": "R",
+          "status": {
+            "abstractGameState": "Preview",
+            "codedGameState": "S",
+            "detailedState": "Scheduled",
+            "statusCode": "S",
+            "startTimeTBD": false,
+            "abstractGameCode": "P"
+          },
+          "teams": {
+            "away": {
+              "team": {
+                "id": 142,
+                "name": "Minnesota Twins"
+              },
+              "probablePitcher": null
+            },
+            "home": {
+              "team": {
+                "id": 114,
+                "name": "Cleveland Guardians"
+              },
+              "probablePitcher": {
+                "id": 800048,
+                "fullName": "Parker Messick",
+                "link": "/api/v1/people/800048"
+              }
+            }
+          },
+          "venue": {
+            "id": 5,
+            "name": "Progressive Field"
+          }
+        }
+      ]
+    }
+  ]
+}

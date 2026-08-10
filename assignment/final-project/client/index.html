@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="查看 MLB 赛程、实时比赛状态、排名、球队与球员数据。">
+  <title>MLB Dugout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/" data-link>
+        <span class="brand-mark">D</span> MLB Dugout
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="打开导航">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="/" data-link data-i18n="nav.home">首页</a></li>
+          <li class="nav-item"><a class="nav-link" href="/schedule" data-link data-i18n="nav.schedule">日程</a></li>
+          <li class="nav-item"><a class="nav-link" href="/standings" data-link data-i18n="nav.standings">排名</a></li>
+          <li class="nav-item"><a class="nav-link" href="/teams" data-link data-i18n="nav.teams">球队</a></li>
+          <li class="nav-item"><a class="nav-link" href="/players" data-link data-i18n="nav.players">球员数据</a></li>
+        </ul>
+        <div id="auth-nav" class="d-flex align-items-center"></div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="app" class="container py-4" aria-live="polite">
+    <div class="empty-state">正在读取比赛数据…</div>
+  </main>
+
+  <footer class="container pb-4 pt-2 text-secondary small">
+    <span id="footer-timezone">日本标准时间（JST）</span><span id="last-updated"></span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/runtime-config.js"></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
