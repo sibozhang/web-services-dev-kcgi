@@ -1,0 +1,558 @@
+{
+  "teams": {
+    "away": {
+      "team": {
+        "springLeague": {
+          "id": 114,
+          "name": "Cactus League",
+          "link": "/api/v1/league/114",
+          "abbreviation": "CL"
+        },
+        "allStarStatus": "N",
+        "id": 145,
+        "name": "Chicago White Sox",
+        "link": "/api/v1/teams/145",
+        "season": 2026,
+        "venue": {
+          "id": 4,
+          "name": "Rate Field",
+          "link": "/api/v1/venues/4"
+        },
+        "springVenue": {
+          "id": 3809,
+          "link": "/api/v1/venues/3809"
+        },
+        "teamCode": "cha",
+        "fileCode": "cws",
+        "abbreviation": "CWS",
+        "teamName": "White Sox",
+        "locationName": "Chicago",
+        "firstYearOfPlay": "1901",
+        "league": {
+          "id": 103,
+          "name": "American League",
+          "link": "/api/v1/league/103"
+        },
+        "division": {
+          "id": 202,
+          "name": "American League Central",
+          "link": "/api/v1/divisions/202"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1",
+          "name": "Major League Baseball"
+        },
+        "shortName": "Chi White Sox",
+        "record": {
+          "gamesPlayed": 98,
+          "wildCardGamesBack": "-",
+          "leagueGamesBack": "-",
+          "springLeagueGamesBack": "-",
+          "sportGamesBack": "-",
+          "divisionGamesBack": "-",
+          "conferenceGamesBack": "-",
+          "leagueRecord": {
+            "wins": 52,
+            "losses": 46,
+            "ties": 0,
+            "pct": ".531"
+          },
+          "records": {},
+          "divisionLeader": false,
+          "wins": 52,
+          "losses": 46,
+          "winningPercentage": ".531"
+        },
+        "franchiseName": "Chicago",
+        "clubName": "White Sox",
+        "active": true
+      },
+      "teamStats": {
+        "batting": {
+          "flyOuts": 5,
+          "groundOuts": 5,
+          "airOuts": 9,
+          "runs": 3,
+          "doubles": 1,
+          "triples": 0,
+          "homeRuns": 1,
+          "strikeOuts": 12,
+          "baseOnBalls": 2,
+          "intentionalWalks": 0,
+          "hits": 6,
+          "hitByPitch": 0,
+          "avg": ".240",
+          "atBats": 31,
+          "obp": ".318",
+          "slg": ".411",
+          "ops": ".729",
+          "caughtStealing": 0,
+          "stolenBases": 0,
+          "stolenBasePercentage": ".---",
+          "groundIntoDoublePlay": 0,
+          "groundIntoTriplePlay": 0,
+          "plateAppearances": 34,
+          "totalBases": 10,
+          "rbi": 3,
+          "leftOnBase": 8,
+          "sacBunts": 0,
+          "sacFlies": 1,
+          "catchersInterference": 0,
+          "pickoffs": 0,
+          "atBatsPerHomeRun": "31.00",
+          "popOuts": 2,
+          "lineOuts": 2
+        },
+        "pitching": {
+          "flyOuts": 6,
+          "groundOuts": 6,
+          "airOuts": 14,
+          "runs": 0,
+          "doubles": 0,
+          "triples": 0,
+          "homeRuns": 0,
+          "strikeOuts": 6,
+          "baseOnBalls": 1,
+          "intentionalWalks": 0,
+          "hits": 4,
+          "hitByPitch": 0,
+          "atBats": 30,
+          "obp": ".161",
+          "caughtStealing": 0,
+          "stolenBases": 0,
+          "stolenBasePercentage": ".---",
+          "caughtStealingPercentage": ".---",
+          "numberOfPitches": 122,
+          "era": "4.04",
+          "inningsPitched": "9.0",
+          "saveOpportunities": 0,
+          "earnedRuns": 0,
+          "whip": "1.31",
+          "battersFaced": 31,
+          "outs": 27,
+          "completeGames": 0,
+          "shutouts": 1,
+          "pitchesThrown": 122,
+          "balls": 34,
+          "strikes": 88,
+          "strikePercentage": ".720",
+          "hitBatsmen": 0,
+          "balks": 0,
+          "wildPitches": 0,
+          "pickoffs": 0,
+          "groundOutsToAirouts": "0.43",
+          "rbi": 0,
+          "pitchesPerInning": "13.56",
+          "runsScoredPer9": "0.00",
+          "homeRunsPer9": "0.00",
+          "inheritedRunners": 0,
+          "inheritedRunnersScored": 0,
+          "catchersInterference": 0,
+          "sacBunts": 0,
+          "sacFlies": 0,
+          "passedBall": 0,
+          "popOuts": 3,
+          "lineOuts": 5
+        },
+        "fielding": {
+          "caughtStealing": 0,
+          "stolenBases": 0,
+          "stolenBasePercentage": ".---",
+          "caughtStealingPercentage": ".---",
+          "assists": 7,
+          "putOuts": 27,
+          "errors": 0,
+          "chances": 34,
+          "passedBall": 0,
+          "pickoffs": 0
+        }
+      },
+      "players": {
+        "ID671976": {
+          "person": {
+            "id": 671976,
+            "fullName": "Tristan Peters",
+            "link": "/api/v1/people/671976",
+            "boxscoreName": "Peters"
+          },
+          "position": {
+            "code": "8",
+            "name": "Outfielder",
+            "type": "Outfielder",
+            "abbreviation": "CF"
+          },
+          "stats": {
+            "batting": {
+              "summary": "0-3 | 3 K",
+              "gamesPlayed": 1,
+              "flyOuts": 0,
+              "groundOuts": 0,
+              "airOuts": 0,
+              "runs": 0,
+              "doubles": 0,
+              "triples": 0,
+              "homeRuns": 0,
+              "strikeOuts": 3,
+              "baseOnBalls": 0,
+              "intentionalWalks": 0,
+              "hits": 0,
+              "hitByPitch": 0,
+              "atBats": 3,
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "groundIntoDoublePlay": 0,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 3,
+              "totalBases": 0,
+              "rbi": 0,
+              "leftOnBase": 1,
+              "sacBunts": 0,
+              "sacFlies": 0,
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "-.--",
+              "popOuts": 0,
+              "lineOuts": 0
+            },
+            "pitching": {},
+            "fielding": {
+              "gamesStarted": 1,
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "assists": 0,
+              "putOuts": 4,
+              "errors": 0,
+              "chances": 4,
+              "fielding": ".000",
+              "passedBall": 0,
+              "pickoffs": 0
+            }
+          }
+        },
+        "ID641743": {
+          "person": {
+            "id": 641743,
+            "fullName": "Anthony Kay",
+            "link": "/api/v1/people/641743",
+            "boxscoreName": "Kay"
+          },
+          "position": {
+            "code": "1",
+            "name": "Pitcher",
+            "type": "Pitcher",
+            "abbreviation": "P"
+          },
+          "stats": {
+            "batting": {},
+            "pitching": {},
+            "fielding": {}
+          }
+        }
+      }
+    },
+    "home": {
+      "team": {
+        "springLeague": {
+          "id": 115,
+          "name": "Grapefruit League",
+          "link": "/api/v1/league/115",
+          "abbreviation": "GL"
+        },
+        "allStarStatus": "N",
+        "id": 141,
+        "name": "Toronto Blue Jays",
+        "link": "/api/v1/teams/141",
+        "season": 2026,
+        "venue": {
+          "id": 14,
+          "name": "Rogers Centre",
+          "link": "/api/v1/venues/14"
+        },
+        "springVenue": {
+          "id": 2536,
+          "link": "/api/v1/venues/2536"
+        },
+        "teamCode": "tor",
+        "fileCode": "tor",
+        "abbreviation": "TOR",
+        "teamName": "Blue Jays",
+        "locationName": "Toronto",
+        "firstYearOfPlay": "1977",
+        "league": {
+          "id": 103,
+          "name": "American League",
+          "link": "/api/v1/league/103"
+        },
+        "division": {
+          "id": 201,
+          "name": "American League East",
+          "link": "/api/v1/divisions/201"
+        },
+        "sport": {
+          "id": 1,
+          "link": "/api/v1/sports/1",
+          "name": "Major League Baseball"
+        },
+        "shortName": "Toronto",
+        "record": {
+          "gamesPlayed": 99,
+          "wildCardGamesBack": "-",
+          "leagueGamesBack": "-",
+          "springLeagueGamesBack": "-",
+          "sportGamesBack": "-",
+          "divisionGamesBack": "-",
+          "conferenceGamesBack": "-",
+          "leagueRecord": {
+            "wins": 46,
+            "losses": 53,
+            "ties": 0,
+            "pct": ".465"
+          },
+          "records": {},
+          "divisionLeader": false,
+          "wins": 46,
+          "losses": 53,
+          "winningPercentage": ".465"
+        },
+        "franchiseName": "Toronto",
+        "clubName": "Blue Jays",
+        "active": true
+      },
+      "teamStats": {
+        "batting": {
+          "flyOuts": 6,
+          "groundOuts": 6,
+          "airOuts": 14,
+          "runs": 0,
+          "doubles": 0,
+          "triples": 0,
+          "homeRuns": 0,
+          "strikeOuts": 6,
+          "baseOnBalls": 1,
+          "intentionalWalks": 0,
+          "hits": 4,
+          "hitByPitch": 0,
+          "avg": ".242",
+          "atBats": 30,
+          "obp": ".305",
+          "slg": ".382",
+          "ops": ".687",
+          "caughtStealing": 0,
+          "stolenBases": 0,
+          "stolenBasePercentage": ".---",
+          "groundIntoDoublePlay": 1,
+          "groundIntoTriplePlay": 0,
+          "plateAppearances": 31,
+          "totalBases": 4,
+          "rbi": 0,
+          "leftOnBase": 8,
+          "sacBunts": 0,
+          "sacFlies": 0,
+          "catchersInterference": 0,
+          "pickoffs": 0,
+          "atBatsPerHomeRun": "-.--",
+          "popOuts": 3,
+          "lineOuts": 5
+        },
+        "pitching": {
+          "flyOuts": 5,
+          "groundOuts": 5,
+          "airOuts": 9,
+          "runs": 3,
+          "doubles": 1,
+          "triples": 0,
+          "homeRuns": 1,
+          "strikeOuts": 12,
+          "baseOnBalls": 2,
+          "intentionalWalks": 0,
+          "hits": 6,
+          "hitByPitch": 0,
+          "atBats": 31,
+          "obp": ".235",
+          "caughtStealing": 0,
+          "stolenBases": 0,
+          "stolenBasePercentage": ".---",
+          "caughtStealingPercentage": ".---",
+          "numberOfPitches": 134,
+          "era": "4.14",
+          "inningsPitched": "9.0",
+          "saveOpportunities": 0,
+          "earnedRuns": 3,
+          "whip": "1.30",
+          "battersFaced": 34,
+          "outs": 27,
+          "completeGames": 0,
+          "shutouts": 0,
+          "pitchesThrown": 134,
+          "balls": 37,
+          "strikes": 97,
+          "strikePercentage": ".720",
+          "hitBatsmen": 0,
+          "balks": 0,
+          "wildPitches": 1,
+          "pickoffs": 0,
+          "groundOutsToAirouts": "0.56",
+          "rbi": 3,
+          "pitchesPerInning": "14.89",
+          "runsScoredPer9": "3.00",
+          "homeRunsPer9": "1.00",
+          "inheritedRunners": 0,
+          "inheritedRunnersScored": 0,
+          "catchersInterference": 0,
+          "sacBunts": 0,
+          "sacFlies": 1,
+          "passedBall": 0,
+          "popOuts": 2,
+          "lineOuts": 2
+        },
+        "fielding": {
+          "caughtStealing": 0,
+          "stolenBases": 0,
+          "stolenBasePercentage": ".---",
+          "caughtStealingPercentage": ".---",
+          "assists": 9,
+          "putOuts": 27,
+          "errors": 0,
+          "chances": 36,
+          "passedBall": 0,
+          "pickoffs": 0
+        }
+      },
+      "players": {
+        "ID669456": {
+          "person": {
+            "id": 669456,
+            "fullName": "Shane Bieber",
+            "link": "/api/v1/people/669456",
+            "boxscoreName": "Bieber"
+          },
+          "position": {
+            "code": "1",
+            "name": "Pitcher",
+            "type": "Pitcher",
+            "abbreviation": "P"
+          },
+          "stats": {
+            "batting": {},
+            "pitching": {},
+            "fielding": {}
+          }
+        },
+        "ID693686": {
+          "person": {
+            "id": 693686,
+            "fullName": "Spencer Miles",
+            "link": "/api/v1/people/693686",
+            "boxscoreName": "Miles"
+          },
+          "position": {
+            "code": "1",
+            "name": "Pitcher",
+            "type": "Pitcher",
+            "abbreviation": "P"
+          },
+          "stats": {
+            "batting": {},
+            "pitching": {},
+            "fielding": {}
+          }
+        }
+      }
+    }
+  },
+  "info": [
+    {
+      "label": "WP",
+      "value": "Yesavage."
+    },
+    {
+      "label": "ABS Challenge",
+      "value": "Varsho (Strike-Overturned to Ball); Romo 2 (Ball-Overturned to Strike, Strike-Confirmed); Murakami (Strike-Overturned to Ball); Peters (Strike-Confirmed); Valenzuela (Strike-Overturned to Ball); Kirk (Ball-Overturned to Strike)."
+    },
+    {
+      "label": "Pitches-strikes",
+      "value": "Burke, S 98-69; Hudson, B 15-12; Taylor, G 9-7; Yesavage 95-69; Fisher 7-6; Fluharty 22-14; Estrada, L 10-8."
+    },
+    {
+      "label": "Groundouts-flyouts",
+      "value": "Burke, S 3-5; Hudson, B 2-1; Taylor, G 1-0; Yesavage 3-3; Fisher 1-0; Fluharty 0-1; Estrada, L 1-1."
+    },
+    {
+      "label": "Batters faced",
+      "value": "Burke, S 23; Hudson, B 4; Taylor, G 4; Yesavage 24; Fisher 3; Fluharty 4; Estrada, L 3."
+    },
+    {
+      "label": "Inherited runners-scored",
+      "value": "Hudson, B 1-0; Fluharty 1-0."
+    },
+    {
+      "label": "Umpires",
+      "value": "HP: Tom Hanahan. 1B: Ron Kulpa. 2B: Scott Barry. 3B: Manny Gonzalez. "
+    },
+    {
+      "label": "Weather",
+      "value": "68 degrees, Sunny."
+    },
+    {
+      "label": "Wind",
+      "value": "3 mph, Out To CF."
+    },
+    {
+      "label": "First pitch",
+      "value": "12:15 PM."
+    },
+    {
+      "label": "T",
+      "value": "2:21."
+    },
+    {
+      "label": "Att",
+      "value": "41,288."
+    },
+    {
+      "label": "Venue",
+      "value": "Rogers Centre."
+    },
+    {
+      "label": "July 19, 2026"
+    }
+  ],
+  "officials": [
+    {
+      "official": {
+        "id": 665297,
+        "fullName": "Tom Hanahan",
+        "link": "/api/v1/people/665297"
+      },
+      "officialType": "Home Plate"
+    },
+    {
+      "official": {
+        "id": 427292,
+        "fullName": "Ron Kulpa",
+        "link": "/api/v1/people/427292"
+      },
+      "officialType": "First Base"
+    },
+    {
+      "official": {
+        "id": 482608,
+        "fullName": "Scott Barry",
+        "link": "/api/v1/people/482608"
+      },
+      "officialType": "Second Base"
+    },
+    {
+      "official": {
+        "id": 484499,
+        "fullName": "Manny Gonzalez",
+        "link": "/api/v1/people/484499"
+      },
+      "officialType": "Third Base"
+    }
+  ]
+}
