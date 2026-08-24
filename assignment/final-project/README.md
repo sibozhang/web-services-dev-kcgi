@@ -1,117 +1,172 @@
-# MLB Dugout Web Service
+# MLB Dugout
 
-以 MLB 数据为主题、严格采用 Client/Server 分离架构的 Web Service 最终项目。Vanilla JavaScript 客户端只调用 Flask REST API；API 只读取 PostgreSQL。MLB Stats API 仅由 CLI 同步服务访问，因此外部 API 暂时不可用时，最近一次成功同步的数据仍可展示。
+MLB Dugout is a full-stack web service for exploring Major League Baseball games, standings, teams, rosters, and player performance. It uses a strictly separated client/server architecture: a framework-free JavaScript client consumes a Flask REST API, while the API reads application data from PostgreSQL.
 
-## 已实现
+The server periodically synchronizes normalized data from the MLB Stats API. Because the browser never calls MLB directly, the application can continue serving the most recently synchronized data when the upstream service is temporarily unavailable.
 
-### P0
+## Live Deployment
 
-- Flask Application Factory、Blueprint、SQLAlchemy、Flask-Migrate
-- PostgreSQL + Docker Compose + Gunicorn + Python 标准库静态客户端 + `/healthz`
-- Flask-CORS 只允许受信任的 Client origin，并支持 JWT Cookie 凭据
-- 15 张领域表、MLB 原始 ID 唯一约束、幂等 upsert
-- MLBClient：连接/读取超时、429/5xx 重试、指数退避、User-Agent、JSON 异常处理
-- 球队、赛程、排名、roster、球队/球员统计、live feed 同步 CLI
-- 日本时间今日全部比赛、六赛区简表
-- 月份/球队赛程筛选、详细排名、30 队分组、球员选择入口
-- 比赛状态：Scheduled、Live、Final、Delayed、Postponed、Suspended、Cancelled、Unknown
-- 邮箱注册、登录、注销；JWT 保存于 HttpOnly Cookie；Cookie CSRF
-- 受保护 API 返回标准 JSON 401，客户端负责登录跳转
-- 真实裁剪 MLB fixture 和默认离线 pytest
+| Service | URL |
+|---|---|
+| Web client | [Open MLB Dugout](https://kcgi-mlb-dugout-client-b3bgaqagafardzcu.japaneast-01.azurewebsites.net/) |
+| REST API | [API base URL](https://kcgi-mlb-dugout-api-ddgdhjcpcah0augw.japaneast-01.azurewebsites.net/) |
+| API health check | [View health status](https://kcgi-mlb-dugout-api-ddgdhjcpcah0augw.japaneast-01.azurewebsites.net/api/health) |
 
-### P1
+Both services are deployed independently on Microsoft Azure App Service in the Japan East region.
 
-- 球队详情、roster、球队赛季统计
-- 球员打击/投球详情；投球局数以出局数整数可靠存储
-- 比赛详情的赛前/进行中/赛后三种模式与 REST JSON 局部刷新
-- Google OIDC 登录（仅 `openid email profile`）
-- 独立 Google Calendar OAuth；Fernet 加密 Token、刷新、撤销处理、重复事件防护
-- Gemini 赛前/赛中/赛后分析；环境变量模型、超时/重试、source hash 缓存、友好降级
-- 球员最近 10 次出场数据与按需 Gemini 赛季表现分析
-- 中文/日文界面切换；AI 输出按语言分别缓存
-- Azure App Service 部署说明
+## Highlights
 
-## 未实现 / Future Work（原始需求清单）
+- Daily and monthly MLB schedules displayed in Japan Standard Time
+- Live, scheduled, final, delayed, postponed, suspended, and cancelled game states
+- Inning-by-inning linescores, decisions, box scores, and active rosters
+- Division standings for all six MLB divisions
+- Team pages with weekly and monthly calendars and complete roster information
+- Player pages with season statistics and up to 10 recent appearances
+- Email/password authentication and Google OpenID Connect sign-in
+- Google Calendar integration with duplicate-event protection
+- On-demand Gemini analysis for pregame, live, final, and player contexts
+- Chinese and Japanese user interfaces, including language-aware AI output
+- Manual synchronization from the client and automated production synchronization
+- Responsive, framework-free client built with HTML, CSS, and Vanilla JavaScript
 
-- 球员历史赛季、姓名搜索
-- 对其他 29 队战绩
-- 球员联盟平均值、队内/联盟排名、百分位及复杂可视化
-- 赛前双方近 10 场完整得失分、赛季交锋的独立可视化
-- Live 当前打者/投手/投球数、逐事件与换人记录的独立时间线
-- Final 关键得分事件的独立列表（当前 boxscore 与 AI 总结已实现）
-- 数据超过阈值时的显式“可能过期”横幅（当前只显示最后更新时间）
-- Statcast 全量逐球、球种/球速/转速/位移（明确不在本项目范围）
+## Architecture
 
-## 架构
+```text
+                         synchronization only
+MLB Stats API ─────────────────────────────────────┐
+                                                   ▼
+                                      MLBClient / Flask CLI
+                                                   │
+                                                   ▼
+Browser ── HTTPS ──► Static JavaScript Client ──► Flask REST API
+                          Azure App Service       Azure App Service
+                                                        │
+                                                        ▼
+                                                   PostgreSQL
+
+Google OAuth / Calendar ◄──────────────────────── Flask REST API
+Gemini API              ◄──────────────────────── Flask REST API
+```
+
+The client and API are deployed as separate applications and communicate across origins through credential-aware CORS. Flask does not render HTML or expose Jinja pages. The client contains no database access, MLB payload parsing, or server-side business logic; it receives simplified JSON resources designed specifically for the UI.
+
+MLB, Google, and Gemini integrations are isolated behind server-side services. An outage in Google or Gemini affects only the related optional action, not the core MLB pages.
+
+## Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| Client | HTML5, CSS3, Vanilla JavaScript, Bootstrap |
+| API | Python, Flask, Flask-CORS, Flask-JWT-Extended |
+| Data | PostgreSQL, SQLAlchemy, Flask-Migrate, Alembic |
+| Authentication | JWT in HttpOnly cookies, CSRF protection, Google OIDC |
+| External services | MLB Stats API, Google Calendar API, Gemini API |
+| Runtime | Gunicorn, Docker, Docker Compose |
+| Production | Microsoft Azure App Service with container sidecars |
+| Testing | pytest with offline MLB fixtures |
+
+## Data Flow and Synchronization
+
+MLB Stats API responses are parsed and normalized by the server before being stored. The browser never receives the original upstream live-feed or box-score payloads.
 
 ```text
 MLB Stats API
-  → MLBClient
-  → MLBSyncService / Flask CLI
+  → resilient MLB client
+  → synchronization service
+  → idempotent database upserts
   → PostgreSQL
-  → Flask REST API / SQLAlchemy（公开 HTTPS :2028，独立 api 容器）
-  ⇄ Flask-CORS（允许 https://localhost:2027，携带 Cookie）
-  → HTML + Bootstrap + Vanilla JavaScript（HTTPS :2027，独立 client 容器）
+  → REST serializers
+  → client-specific JSON
 ```
 
-客户端不包含数据库访问代码、MLB 原始 JSON 解析或业务逻辑。Flask 不渲染 HTML，也不提供 Jinja 页面；客户端直接跨 origin 调用 Flask API，所有浏览器数据均来自服务器简化包装后的 JSON resource。Google 与 Gemini 故障只影响对应操作，不影响 MLB 数据页面。
+The MLB client applies connection and read timeouts, retries for rate limits and server errors, exponential backoff, response validation, and a project-specific User-Agent. MLB identifiers are protected by unique constraints, and repeated synchronization uses idempotent upserts.
 
-### REST API
+Production synchronization runs in a worker sidecar rather than in the Flask web process:
 
-| Method | Endpoint | 用途 | 权限 |
+| Data | Frequency |
+|---|---:|
+| Current games and recent schedules | Every 5 minutes |
+| Standings | Every 12 hours |
+| Team season statistics | Every 12 hours |
+| Active and 40-man rosters | Every 12 hours |
+| Player season statistics | Every 12 hours |
+
+Completed games stop receiving high-frequency live updates. Historical data remains available from PostgreSQL after its initial synchronization.
+
+## REST API
+
+Successful responses use `{"data": ...}`. Errors use `{"error": {"code": "...", "message": "..."}}`.
+
+| Method | Endpoint | Description | Access |
 |---|---|---|---|
-| GET | `/api/games?date=YYYY-MM-DD` | 某日比赛卡数据 | Public |
-| GET | `/api/games?month=YYYY-MM&team=ID` | 月份/球队日程 | Public |
-| GET | `/api/games/{gamePk}` | 完整比赛详情、局分、责任投手、boxscore、AI 结果 | User |
-| GET | `/api/games/{gamePk}/status` | 比赛状态局部刷新 | User |
-| POST | `/api/games/{gamePk}/analyses` | 生成或读取 AI 分析 | User |
-| GET | `/api/standings` | 六赛区排名及球队赛季数据 | Public |
-| GET | `/api/teams` | 30 支球队 | Public |
-| GET | `/api/teams/{mlbTeamId}` | 球队详情 | User |
-| GET | `/api/teams/{mlbTeamId}/roster` | 球队 roster | Public |
-| GET | `/api/players/{mlbPlayerId}?lang=zh|ja` | 球员赛季数据、最近 10 场出场与 AI 结果 | User |
-| POST | `/api/players/{mlbPlayerId}/analyses` | 按请求语言生成或读取球员 AI 分析 | User |
-| GET/POST | `/api/auth/*` | Session、注册、登录、注销、Google OIDC | Mixed |
-| POST | `/api/calendar/authorization` | 开始 Calendar OAuth | User |
-| POST | `/api/calendar/events` | 添加比赛 | User |
+| `GET` | `/api/health` | Service and database health | Public |
+| `GET` | `/api/games?date=YYYY-MM-DD` | Games for a specific JST date | Public |
+| `GET` | `/api/games?month=YYYY-MM&team=ID` | Monthly or team schedule | Public |
+| `GET` | `/api/games/{gamePk}` | Game details, linescore, decisions, box score, and analysis | User |
+| `GET` | `/api/games/{gamePk}/status` | Lightweight game-status refresh | User |
+| `POST` | `/api/games/{gamePk}/analyses` | Generate or retrieve game analysis | User |
+| `GET` | `/api/standings` | Standings for all six divisions | Public |
+| `GET` | `/api/teams` | All 30 MLB teams | Public |
+| `GET` | `/api/teams/{mlbTeamId}` | Team details and schedule context | User |
+| `GET` | `/api/teams/{mlbTeamId}/schedule` | Weekly or monthly team schedule | User |
+| `GET` | `/api/teams/{mlbTeamId}/roster` | Team roster | Public |
+| `GET` | `/api/players/{mlbPlayerId}?lang=zh\|ja` | Player statistics, recent appearances, and cached analysis | User |
+| `POST` | `/api/players/{mlbPlayerId}/analyses` | Generate or retrieve player analysis | User |
+| `GET/POST` | `/api/auth/*` | Registration, login, logout, session, and Google OIDC | Mixed |
+| `POST` | `/api/calendar/authorization` | Start Google Calendar authorization | User |
+| `POST` | `/api/calendar/events` | Add a game to Google Calendar | User |
+| `POST` | `/api/sync/games` | Manually trigger a current-game refresh | User |
 
-统一响应使用 `{"data": ...}`；错误使用 `{"error": {"code": "...", "message": "..."}}`。API 不会原样返回 MLB Stats API 的 live feed 或 boxscore。
+## Run Locally with Docker
 
-## 本地 Docker 启动
+### Prerequisites
 
-要求 Docker Desktop / Docker Engine 与 Compose。
+- Docker Desktop or Docker Engine
+- Docker Compose
+
+### Start the application
 
 ```bash
+git clone https://github.com/sibozhang/web-services-dev-kcgi.git
+cd web-services-dev-kcgi/assignment/final-project
 cp .env.example .env
-# 编辑 .env，至少替换 SECRET_KEY 和 JWT_SECRET_KEY
+```
+
+Set at least `SECRET_KEY` and `JWT_SECRET_KEY` to secure random values in `.env`, then run:
+
+```bash
 docker compose up --build
 ```
 
-打开客户端 `https://localhost:2027`。REST API 位于 `https://localhost:2028/api`；API 容器内部的 Gunicorn 仍监听 `2027`，Docker 只把它映射到主机端口 `2028`，从而形成真实的跨 origin C/S 调用。
+Open:
 
-本地容器启动时会自动生成一张只用于开发的共享自签名证书，Client 与 API 都使用这张证书。浏览器第一次访问会显示证书不受信任警告；确认地址为 localhost 后可以继续访问。生产环境必须使用受信任 CA 证书或由 Azure App Service 终止 TLS。
+- Client: `https://localhost:2027`
+- API: `https://localhost:2028/api`
+- Health check: `https://localhost:2028/api/health`
 
-入口脚本会等待 PostgreSQL 并自动执行 `flask db upgrade`。手动迁移：
+The local containers share an automatically generated self-signed development certificate. Your browser may show a certificate warning the first time you open either localhost URL. Production TLS is terminated by Azure App Service.
+
+Database migrations run automatically after PostgreSQL becomes ready. To run them manually:
 
 ```bash
 docker compose exec api flask --app wsgi:app db upgrade
 ```
 
-停止容器（保留数据库 volume）：
+Stop the application while preserving the database volume:
 
 ```bash
 docker compose down
 ```
 
-## 初始化与同步
+## Initialize MLB Data
 
-首次完整同步：
+Run a complete initial synchronization:
 
 ```bash
 docker compose exec api flask --app wsgi:app sync-all --season 2026
 ```
 
-分步同步：
+Individual synchronization commands are also available:
 
 ```bash
 docker compose exec api flask --app wsgi:app sync-teams
@@ -120,103 +175,83 @@ docker compose exec api flask --app wsgi:app sync-standings --season 2026
 docker compose exec api flask --app wsgi:app sync-rosters --season 2026
 docker compose exec api flask --app wsgi:app sync-team-stats --season 2026
 docker compose exec api flask --app wsgi:app sync-player-stats --season 2026
-docker compose exec api flask --app wsgi:app sync-live-games
 docker compose exec api flask --app wsgi:app sync-current-games --lookback-days 1
 ```
 
-`sync-current-games` 是给 Azure 外部调度器调用的一次性命令：它先刷新 JST 最近赛程，使 Scheduled 状态能够推进为 Live/Final，再获取进行中比赛的 live feed。它不会在应用内启动定时器。
+The production container scripts are:
 
-`sync-player-stats` 会遍历当前 roster，初次运行时间最长；单个球员失败只记录日志并继续。
-
-使用独立的 `sync-worker` sidecar 执行生产自动同步，不在 Flask Web
-进程内运行定时循环。`bootstrap-sync` 完成全量初始化并写入数据库标记后，
-worker 才会开始：
-
-| 数据 | 当前频率 |
-|---|---|
-| 当前比赛与最近赛程 | 5 分钟（`sync-current-games`） |
-| 排名 | 12 小时 |
-| 球队赛季统计 | 12 小时 |
-| roster | 12 小时 |
-| 球员赛季统计 | 12 小时 |
-| 已结束比赛 | 确认 final 后停止高频更新 |
-| 历史赛季 | 首次获取后长期保存 |
-
-容器内脚本：
-
-```bash
+```text
 /app/scripts/bootstrap_sync.sh
 /app/scripts/sync_worker.sh
 ```
 
-API 主容器负责执行 Alembic。两个同步 sidecar 设置
-`SKIP_DB_MIGRATIONS=1`，避免多个容器竞争迁移记录。
+The API container owns database migrations. Synchronization sidecars set `SKIP_DB_MIGRATIONS=1` to avoid concurrent migration attempts.
 
-## 环境变量
+## Configuration
 
-| 变量 | 必需 | 说明 |
-|---|---:|---|
-| `FLASK_ENV` | 是 | `development` 或生产环境标识 |
-| `SECRET_KEY` | 是 | Flask session 随机密钥 |
-| `JWT_SECRET_KEY` | 是 | JWT 签名密钥，至少 32 字节 |
-| `JWT_COOKIE_SAMESITE` | 是 | 跨 origin Cookie 使用 `None`，且必须同时保持 Secure |
-| `SESSION_COOKIE_SAMESITE` | 是 | OAuth session 跨 origin 使用 `None` |
-| `DATABASE_URL` | 是 | `postgresql+psycopg://...`；也兼容 Azure 提供的 `postgresql://` |
-| `MLB_SEASON` | 是 | 默认展示赛季，如 `2026` |
-| `APP_TIMEZONE` | 是 | 默认 `Asia/Tokyo` |
-| `MLB_SYNC_START` | bootstrap | 全量赛程同步开始日期 |
-| `MLB_SYNC_END` | bootstrap | 全量赛程同步结束日期 |
-| `SKIP_DB_MIGRATIONS` | sidecar | API 主容器为 `0`；同步 sidecar 为 `1` |
-| `SYNC_CURRENT_INTERVAL_SECONDS` | worker | 当前比赛同步间隔，默认 `300` |
-| `SYNC_DAILY_INTERVAL_SECONDS` | worker | 排名、统计与 roster 同步间隔，默认 `43200` |
-| `SYNC_WORKER_POLL_SECONDS` | worker | worker 调度检查间隔，默认 `30` |
-| `SYNC_WORKER_STARTUP_GRACE_SECONDS` | worker | 等待 bootstrap 写入 started 标记的启动缓冲，默认 `60` |
-| `GEMINI_API_KEY` | AI | Gemini API Key |
-| `GEMINI_MODEL` | AI | Gemini 模型名；代码不硬编码 Preview 模型 |
-| `GOOGLE_CLIENT_ID` | Google | Google OAuth Client ID |
-| `GOOGLE_CLIENT_SECRET` | Google | Google OAuth Client Secret |
-| `GOOGLE_LOGIN_REDIRECT_URI` | Google | OIDC 回调，默认 API 的 `/api/auth/google/callback` |
-| `GOOGLE_CALENDAR_REDIRECT_URI` | Calendar | Calendar 回调，默认 API 的 `/api/calendar/callback` |
-| `TOKEN_ENCRYPTION_KEY` | Calendar | Fernet 对称密钥 |
-| `BASE_URL` | Calendar | API 公开根 URL；本地为 `https://localhost:2028` |
-| `CLIENT_URL` | 是 | 客户端公开根 URL；本地为 `https://localhost:2027` |
-| `CORS_ORIGINS` | 是 | 允许调用 API 的客户端 origin，多个值用逗号分隔 |
-| `API_BASE_URL` | Client | 浏览器调用的 API 根 URL；本地为 `https://localhost:2028` |
-| `TLS_MODE` | 是 | 本地 Docker 使用 `direct`；Azure App Service 使用 `proxy` |
-| `TLS_CERT_FILE` | 本地 HTTPS | 开发证书路径，默认 `/tmp/mlb-dugout.crt` |
-| `TLS_KEY_FILE` | 本地 HTTPS | 开发私钥路径，默认 `/tmp/mlb-dugout.key` |
+Copy `.env.example` to `.env` for local development. Do not commit real credentials.
 
-生成 Fernet Key：
+### Core settings
+
+| Variable | Purpose |
+|---|---|
+| `FLASK_ENV` | Runtime environment |
+| `SECRET_KEY` | Flask session signing key |
+| `JWT_SECRET_KEY` | JWT signing key; use at least 32 random bytes |
+| `DATABASE_URL` | PostgreSQL connection URL using the psycopg driver |
+| `MLB_SEASON` | Default season displayed by the application |
+| `APP_TIMEZONE` | Application timezone; defaults to `Asia/Tokyo` |
+| `CLIENT_URL` | Public client origin |
+| `CORS_ORIGINS` | Comma-separated client origins allowed to call the API |
+| `API_BASE_URL` | Public API origin injected into the client |
+| `TLS_MODE` | `direct` locally or `proxy` behind Azure TLS termination |
+
+### Authentication and Google services
+
+| Variable | Purpose |
+|---|---|
+| `JWT_COOKIE_SAMESITE` | Use `None` for cross-origin secure cookies |
+| `SESSION_COOKIE_SAMESITE` | Use `None` for cross-origin OAuth sessions |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
+| `GOOGLE_LOGIN_REDIRECT_URI` | Google OIDC callback URL |
+| `GOOGLE_CALENDAR_REDIRECT_URI` | Google Calendar OAuth callback URL |
+| `TOKEN_ENCRYPTION_KEY` | Fernet key used to encrypt stored Calendar tokens |
+| `BASE_URL` | Public API origin used to construct server URLs |
+
+Generate a Fernet key after installing the project dependencies:
 
 ```bash
 python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 ```
 
-任何真实秘密都不能提交到 Git。
+For the live deployment, the authorized Google redirect URIs use the API host:
 
-## Google 配置
+```text
+https://kcgi-mlb-dugout-api-ddgdhjcpcah0augw.japaneast-01.azurewebsites.net/api/auth/google/callback
+https://kcgi-mlb-dugout-api-ddgdhjcpcah0augw.japaneast-01.azurewebsites.net/api/calendar/callback
+```
 
-在 Google Cloud Console 创建 Web OAuth Client，并添加两条 Redirect URI：
+The authorized JavaScript origin is:
 
-- `https://localhost:2028/api/auth/google/callback`
-- `https://localhost:2028/api/calendar/callback`
+```text
+https://kcgi-mlb-dugout-client-b3bgaqagafardzcu.japaneast-01.azurewebsites.net
+```
 
-登录只请求身份 scope。用户登录后主动点击“连接 Google Calendar”才请求 `calendar.events`。已有邮箱密码账号不会只凭相同邮箱自动与新 Google subject 合并。
+Google sign-in requests only identity scopes. Calendar access is requested separately when an authenticated user explicitly connects Google Calendar.
 
-## Gemini
+### Gemini
 
-设置 `GEMINI_API_KEY` 和 `GEMINI_MODEL`。AI 只接收数据库整理后的结构化输入：
+| Variable | Purpose |
+|---|---|
+| `GEMINI_API_KEY` | Gemini API key |
+| `GEMINI_MODEL` | Configurable Gemini model name |
 
-- Scheduled → AI 赛前展望
-- Live → 手动 AI 比赛中分析
-- Final → AI 赛后总结
-- Player → 点击生成后分析赛季成绩与最近出场表现
+Gemini receives only structured data prepared by the server. Analyses are generated on demand for scheduled games, live games, completed games, and player performance. Results are cached by a SHA-256 hash of the source data and language, so Chinese and Japanese outputs remain independent. If Gemini is unavailable, the MLB data pages continue to work and the client displays a retryable message.
 
-相同输入和语言先按 SHA-256 source hash 查询 `ai_analyses`；中文与日文分析使用独立缓存。Gemini 未配置、超时、限流或响应无效时，页面保持可用并提示重试。
+## Testing
 
-## 测试
-
-默认测试不访问 MLB、Google 或 Gemini：
+The automated test suite uses local fixtures and does not call MLB, Google, or Gemini by default.
 
 ```bash
 python -m venv .venv
@@ -225,44 +260,57 @@ pip install -r requirements.txt
 pytest
 ```
 
-覆盖状态映射、UTC/JST、JST 日期边界、局数转换、API 重试配置、upsert 幂等、排名解析、REST resource 包装、权限、注册登录、JWT Cookie、客户端/服务器容器边界、OAuth state、Calendar 去重、AI 缓存与 AI 未配置降级。
+The suite covers status normalization, UTC/JST boundaries, inning conversion, MLB retry behavior, idempotent synchronization, standings parsing, REST serialization, authentication, JWT cookies, CSRF protection, client/server boundaries, OAuth state validation, Calendar deduplication, AI caching, graceful external-service failures, and container automation contracts.
 
-手动外部 smoke test：
+Optional external-service smoke tests are available for local development:
 
 ```bash
 python scripts/smoke_external_services.py
 python scripts/smoke_external_services.py --google
-# 下面一次最小请求可能计费
 python scripts/smoke_external_services.py --gemini
 ```
 
-探索真实 MLB 数据：
+The Gemini smoke test sends a real API request and may consume quota.
 
-```bash
-python scripts/explore_mlb_api.py schedule --date 2026-07-21 --output /tmp/schedule.json
-python scripts/explore_mlb_api.py live --game-pk 822786 --output /tmp/live.json
+## Project Structure
+
+```text
+final-project/
+├── app/
+│   ├── blueprints/api/       # REST routes and serializers
+│   ├── commands/             # Flask synchronization commands
+│   ├── models/               # SQLAlchemy domain models
+│   └── services/             # MLB, AI, authentication, and Calendar services
+├── client/                   # Independent HTML/CSS/JavaScript client
+├── migrations/               # Alembic database migrations
+├── scripts/                  # Bootstrap, worker, exploration, and smoke-test tools
+├── tests/                    # Unit, integration, and fixture-based tests
+├── docker-compose.yml        # Local client/API/PostgreSQL environment
+├── Dockerfile                # API production image
+├── AZURE_DEPLOYMENT.md       # Azure container deployment guide
+└── wsgi.py                   # API application entry point
 ```
 
-## 时间规则
+## Time and Data Rules
 
-数据库保存 timezone-aware UTC，并保存/显示 JST。首页“今日”以 `Asia/Tokyo` 的 00:00–23:59 为边界，再转换为 UTC 查询；不会把日本日期直接当作 MLB 官方日期。测试 fixture 中，`2026-07-19T16:15:00Z` 正确归入日本时间 `2026-07-20`。
+- Datetimes are stored as timezone-aware UTC values and displayed in JST.
+- The home page defines “today” using the `Asia/Tokyo` calendar day before converting the query window to UTC.
+- Pitching innings are stored using integer outs to avoid decimal-inning errors.
+- External MLB identifiers are retained for stable synchronization and resource URLs.
+- AI output is descriptive and based only on structured data already available to the server.
 
-## 已知风险
+## Limitations and Future Work
 
-- Google OIDC、Calendar 和 Gemini 的真实端到端调用需要你自己的凭据，本仓库只完成离线测试和降级测试。
-- 初次全 roster 球员统计同步请求较多；已节流并按球员隔离失败，但仍可能受 MLB 限流影响。
-- 初始迁移从当前 SQLAlchemy metadata 创建 15 张表；发布后新增字段应继续生成新的显式 Alembic revision，不要修改 `0001_initial`。
-- MLB API 为公开但非本项目控制的外部服务，字段变化时先运行探索脚本并更新 fixture/解析测试。
+- Historical player-season browsing and name-based player search
+- Head-to-head records against every opponent
+- League-relative percentiles and advanced visualizations
+- A dedicated play-by-play timeline for live games
+- Full Statcast pitch-level data, including velocity, spin, and movement
 
-## 演示顺序
+## Deployment
 
-1. 首页：今日比赛、状态标签、六赛区简表
-2. 日程：切换 `2026-07` 与球队
-3. 排名：六赛区详细数据与 run differential
-4. 球队：30 队分组、Logo fallback
-5. 访客点击详情 → API 401 → 客户端登录跳转
-6. 注册/登录 → 比赛详情、球队详情、球员详情
-7. 手动 AI 分析：未配置时展示友好降级；配置后展示缓存
-8. Google Calendar：说明独立授权、未来比赛与重复防护
+The production environment uses separate Azure App Service applications for the client and API, with PostgreSQL and synchronization workers running as API-side container components. See [AZURE_DEPLOYMENT.md](AZURE_DEPLOYMENT.md) for the complete deployment procedure and required settings.
 
-详细实施记录见 [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)，Azure 步骤见 [AZURE_DEPLOYMENT.md](AZURE_DEPLOYMENT.md)。
+## Data Attribution
+
+MLB data is obtained from the public MLB Stats API. This is an educational project and is not affiliated with or endorsed by Major League Baseball.
